@@ -1,9 +1,10 @@
 **Passage Email Classification**
 ===================
 
-http://nbviewer.ipython.org/github/IndicoDataSolutions/demos/blob/master/passage_playground.ipynb
+https://github.com/IndicoDataSolutions/demos/blob/master/passage_emails/passage_playground.ipynb
 
 ![preprocessing](http://i.imgur.com/qODGNIJ.png)
+![tokenizer](http://i.imgur.com/z8o14la.png)
 ![passage](http://i.imgur.com/tGkT46E.png)
 
 room for improvement:
