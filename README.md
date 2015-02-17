@@ -6,5 +6,4 @@
 
 [Passage Gender Classification](https://github.com/IndicoDataSolutions/demos/tree/master/passage_gender_classification)
 
-<a href="https://github.com/IndicoDataSolutions/demos/tree/master/passage_email_classification"><img src="http://i.imgur.com/hfAqTEG.jpg" height="300" ></a>
-
+<a href="https://github.com/IndicoDataSolutions/demos/tree/master/passage_email_classification"><img src="http://i.imgur.com/cEmonmC.jpg" height="300" ></a>
