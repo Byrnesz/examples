@@ -1,4 +1,4 @@
-**indico demos**
+**indico examples**
 ===================
 [Passage Email Classification](https://github.com/IndicoDataSolutions/demos/tree/master/passage_email_classification)
 
