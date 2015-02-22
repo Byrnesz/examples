@@ -2,6 +2,7 @@
 # compare with small & large datasets
 # regex garbage, puctuation, and remove NaNs from emails
 # compare w/ max entropy + tfidf
+# predict proba
 
 import pandas as pd
 import numpy as np
@@ -32,15 +33,14 @@ X = X.tocsc()
 Y = df.gids.values.astype(np.int)
 
 ntest = int(len(df) * .7) # TODO: use train_test_split from scikit
-X = [word for word in df.body.values if word] # TODO: wont return empty string
+X = [word for word in df.body.values if word]
 Y = df.gids.values
 X_train = X[:-ntest]
 X_test  = X[-ntest:]
 Y_train = Y[:-ntest]
 Y_test  = Y[-ntest:]
 
-print X_train[3:4][0][:10] # example email 
-# Hey Jonah,
+print X_train[3:4][0] # example email 
 
 tokenizer = Tokenizer(min_df=10, max_features=50000)
 X_train = tokenizer.fit_transform(X_train)
@@ -70,6 +70,5 @@ for i in range(2):
 # Epoch 0 Seen 2015 samples Avg cost 0.1200 Time elapsed 54 seconds
 # 1 0.969392216878 0.147488755622
 
-# save and view model
 save(model, 'save_test_2_22.pkl')
 pd.read_pickle('save_test_2_22.pkl')
