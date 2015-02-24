@@ -1,4 +1,4 @@
-# TODO: use scikit-learn datasets
+# TODO
 # compare with small & large datasets
 # regex garbage, puctuation, and remove NaNs from emails
 # compare w/ max entropy + tfidf
@@ -7,12 +7,10 @@
 import pandas as pd
 import numpy as np
 from sklearn import metrics
-from sklearn import cross_validation
-from sklearn.feature_extraction.text import CountVectorizer
 from passage.preprocessing import Tokenizer
 from passage.layers import Embedding, GatedRecurrent, Dense
 from passage.models import RNN
-from passage.utils import save, load
+from passage.utils import save
 
 gid = pd.read_json('email.json')
 mom = pd.read_json('mom.json')
@@ -27,11 +25,6 @@ for email in mom.body:
         m_emails.append({'gids': False, 'body': email['content'].encode(errors='ignore')})
 df = pd.DataFrame.from_records(g_emails + m_emails)
 
-vectorizer = CountVectorizer(min_df=5, max_df=.3, ngram_range=(1,2))
-X = vectorizer.fit_transform(df.body)
-X = X.tocsc()
-Y = df.gids.values.astype(np.int)
-
 ntest = int(len(df) * .7) # TODO: use train_test_split from scikit
 X = [word for word in df.body.values if word]
 Y = df.gids.values
@@ -40,7 +33,7 @@ X_test  = X[-ntest:]
 Y_train = Y[:-ntest]
 Y_test  = Y[-ntest:]
 
-print X_train[3:4][0] # example email 
+print X_train[3][0] # example email 
 
 tokenizer = Tokenizer(min_df=10, max_features=50000)
 X_train = tokenizer.fit_transform(X_train)
@@ -70,5 +63,4 @@ for i in range(2):
 # Epoch 0 Seen 2015 samples Avg cost 0.1200 Time elapsed 54 seconds
 # 1 0.969392216878 0.147488755622
 
-save(model, 'save_test_2_22.pkl')
-pd.read_pickle('save_test_2_22.pkl')
+save(model, 'model.pkl')
