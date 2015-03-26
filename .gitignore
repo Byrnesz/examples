@@ -1,5 +1,6 @@
+.ipynb_checkpoints
 *.txt
-*.ipynb_checkpoints
 *.json
 *.ipynb
 *.pkl
+*.pyc
