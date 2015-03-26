@@ -24,9 +24,7 @@ ids = te_data['id'].values
 teX = [clean(text) for text in te_data['review'].values]
 teX = vect.transform(teX)
 
-# %time
-# CPU times: user 2 µs, sys: 0 ns, total: 2 µs
-# Wall time: 5.01 µs
+
 # kaggle score - 0.95974
 model_log = LR()
 model_log.fit(trX, trY)
@@ -34,9 +32,6 @@ pr_teX_log = model_log.predict_proba(teX)[:, 1]
 pd.DataFrame(np.asarray([ids, pr_teX_log]).T).to_csv('log.csv',index=False,header=["id", "sentiment"])
 
 
-# %time
-# CPU times: user 1e+03 ns, sys: 0 ns, total: 1e+03 ns
-# Wall time: 3.1 µs
 # kaggle score - 0.89864
 model_lin = LinearSVC()
 model_lin.fit(trX, trY)
@@ -44,9 +39,6 @@ pr_teX_lin = model_lin.predict(teX)
 pd.DataFrame(np.asarray([ids, pr_teX_lin]).T).to_csv('linsvc.csv', index=False, header=["id", "sentiment"])
 
 
-# %time
-# CPU times: user 1 µs, sys: 0 ns, total: 1 µs
-# Wall time: 4.77 µs
 # Accuracy: 87.25%
 pos = []
 neg = []
