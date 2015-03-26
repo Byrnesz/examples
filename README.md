@@ -1,4 +1,4 @@
-**indico Examples**
+**indico examples**
 ===================
 
 [Passage Newsgroup Classification](https://github.com/IndicoDataSolutions/demos/tree/master/passage_newsgroup_classification)
