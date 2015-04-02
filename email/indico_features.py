@@ -1,5 +1,4 @@
-from functions import get_bin_month, extract_words
-from indicoio import sentiment, political, text_tags
+from indicoio import sentiment
 from email_reply_parser import EmailReplyParser
 
 
