@@ -9,7 +9,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn import cross_validation, naive_bayes
 
 def clean(text):
-	# score w/ LR - 0.95660
+	# score w/ LR - 0.95974
     return html.fromstring(text).text_content().lower().strip()
 
 
