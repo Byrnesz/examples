@@ -1,10 +1,11 @@
 from indicoio import sentiment
 from email_reply_parser import EmailReplyParser
-
-
+import json
 from bs4 import BeautifulSoup
 import re
 from nltk.corpus import stopwords
+
+
 def email_to_words(raw_review):
     review_text = BeautifulSoup(raw_review).get_text()
     letters_only = re.sub("[^a-zA-Z]", " ", review_text)
@@ -13,16 +14,15 @@ def email_to_words(raw_review):
     useful_words = [w for w in words if not w in stops]
     return useful_words
 
-import pdb
+
 def sentiment_words_sliding(messages, window=10000, shift=200):
     allwords = []
     data = {}
     for m in messages:
-        # pdb.set_trace()
-        # if "\\Sent" not in m.get('folders', tuple()):
-        #     continue
-        # if not m.get('body') or not m['body'].get('content'):
-        #     continue
+        if "\\Sent" not in m.get('folders', tuple()):
+            continue
+        if not m.get('body') or not m['body'].get('content'):
+            continue
         allwords.extend(email_to_words(EmailReplyParser.parse_reply(m['body']['content'])))
     current_window = 0
     next_window = window
@@ -39,7 +39,6 @@ def sentiment_words_sliding(messages, window=10000, shift=200):
     return data
 
 
-import json
 f = open('email_4_1.json','r')
 rawemails = json.load(f)
 print len(rawemails)
