@@ -9,7 +9,21 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn import cross_validation, naive_bayes
 
 def clean(text):
+	# score w/ LR - 0.95660
     return html.fromstring(text).text_content().lower().strip()
+
+
+from bs4 import BeautifulSoup
+import re
+from nltk.corpus import stopwords
+def rev_to_words(raw_review):
+	# score w/ LR - 0.95660
+    review_text = BeautifulSoup(raw_review).get_text()
+    letters_only = re.sub("[^a-zA-Z]", " ", review_text)
+    words = letters_only.lower().split()
+    stops = set(stopwords.words("english"))
+    useful_words = [w for w in words if not w in stops]
+    return(" ".join(useful_words))
 
 tr_data = pd.read_csv('labeledTrainData.tsv', delimiter='\t')
 te_data = pd.read_csv('testData.tsv', delimiter='\t')
@@ -24,22 +38,20 @@ ids = te_data['id'].values
 teX = [clean(text) for text in te_data['review'].values]
 teX = vect.transform(teX)
 
-
-# kaggle score - 0.95974
 model_log = LR()
 model_log.fit(trX, trY)
 pr_teX_log = model_log.predict_proba(teX)[:, 1]
 pd.DataFrame(np.asarray([ids, pr_teX_log]).T).to_csv('log.csv',index=False,header=["id", "sentiment"])
 
 
-# kaggle score - 0.89864
+# score - 0.89864
 model_lin = LinearSVC()
 model_lin.fit(trX, trY)
 pr_teX_lin = model_lin.predict(teX)
 pd.DataFrame(np.asarray([ids, pr_teX_lin]).T).to_csv('linsvc.csv', index=False, header=["id", "sentiment"])
 
 
-# Accuracy: 87.25%
+# accuracy - 87.25%
 pos = []
 neg = []
 for num, row in tr_data.iterrows():
