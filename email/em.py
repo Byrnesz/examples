@@ -6,16 +6,16 @@ import re
 from nltk.corpus import stopwords
 
 
-def email_to_words(raw_review):
-    review_text = BeautifulSoup(raw_review).get_text()
-    letters_only = re.sub("[^a-zA-Z]", " ", review_text)
-    words = letters_only.lower().split()
+def email_to_words(text):
+    cl_text = BeautifulSoup(text).get_text()
+    re_text = re.sub("[^\w]", " ", cl_text)
+    words = re_text.lower().split()
     stops = set(stopwords.words("english"))
     useful_words = [w for w in words if not w in stops]
     return useful_words
 
 
-def sentiment_words_sliding(messages, window=10000, shift=200):
+def sentiment_sliding(messages, window=100, shift=20):
     allwords = []
     data = {}
     for m in messages:
@@ -24,6 +24,7 @@ def sentiment_words_sliding(messages, window=10000, shift=200):
         if not m.get('body') or not m['body'].get('content'):
             continue
         allwords.extend(email_to_words(EmailReplyParser.parse_reply(m['body']['content'])))
+
     current_window = 0
     next_window = window
     print len(allwords)
@@ -39,9 +40,9 @@ def sentiment_words_sliding(messages, window=10000, shift=200):
     return data
 
 
-f = open('email_4_1.json','r')
+f = open('email.json','r')
 rawemails = json.load(f)
 print len(rawemails)
 f.close()
-data = sentiment_words_sliding(rawemails)
+data = sentiment_sliding(rawemails)
 print data
