@@ -5,3 +5,4 @@
 *.ipynb
 *.pkl
 *.pyc
+passage_newsgroup_classification/*

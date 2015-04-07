@@ -1,6 +1,9 @@
-import numpy as np
 import pandas as pd
+import numpy as np
 from lxml import html
+from bs4 import BeautifulSoup
+import re
+from nltk.corpus import stopwords
 from sklearn.linear_model import LogisticRegression as LR
 from sklearn.svm import LinearSVC
 from sklearn.svm import SVC
@@ -8,22 +11,20 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn import cross_validation, naive_bayes
 
+
+# score w/ LR - 0.95974
 def clean(text):
-	# score w/ LR - 0.95974
     return html.fromstring(text).text_content().lower().strip()
 
 
-from bs4 import BeautifulSoup
-import re
-from nltk.corpus import stopwords
+# score w/ LR - 0.95660
 def rev_to_words(raw_review):
-	# score w/ LR - 0.95660
     review_text = BeautifulSoup(raw_review).get_text()
     letters_only = re.sub("[^a-zA-Z]", " ", review_text)
     words = letters_only.lower().split()
     stops = set(stopwords.words("english"))
     useful_words = [w for w in words if not w in stops]
-    return(" ".join(useful_words))
+    return " ".join(useful_words)
 
 tr_data = pd.read_csv('labeledTrainData.tsv', delimiter='\t')
 te_data = pd.read_csv('testData.tsv', delimiter='\t')
