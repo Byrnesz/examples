@@ -155,9 +155,9 @@ def download(account_id):
 # configure context.io credential strings after setting up acct
 if __name__ == '__main__':
     context_io = contextio.ContextIO(
-        consumer_key = c_key,
-        consumer_secret = c_secret
+        consumer_key = "CONSUMER_KEY",
+        consumer_secret = "CONSUMER_SECRET"
     )
 
-    email_id = eid
+    email_id = "EMAIL_ID"
     download(email_id)
