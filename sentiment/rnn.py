@@ -22,6 +22,7 @@ if __name__ == "__main__":
 
 	print("Training data tokenized.")
 
+	# score - 0.96974
 	layers = [
 		Embedding(size=256, n_features=tokenizer.n_features),
 		GatedRecurrent(size=512, activation='tanh', gate_activation='steeper_sigmoid', init='orthogonal', seq_output=False, p_drop=0.75),
