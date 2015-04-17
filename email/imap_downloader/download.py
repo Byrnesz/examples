@@ -7,7 +7,6 @@ import datetime
 from requests.exceptions import ChunkedEncodingError
 import contextio
 import logging
-from cred import *
 
 
 class OpbeatLogger():
