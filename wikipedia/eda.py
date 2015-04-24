@@ -3,6 +3,8 @@ import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn import cross_validation, naive_bayes
 
+# dataset - https://github.com/zhangxiangxiao/Crepe/blob/master/README.md#components
+
 header_rows = ['cl', 'title', 'content']
 df = pd.read_csv('train.csv', names=header_rows)
 
