@@ -27,7 +27,7 @@ def sentiment_sliding(messages, window=1000, shift=20):
             print "sliding-sentiment reached end at lengths:%s" % len(allwords)
             break
         print "sliding-sentiment start:%s end:%s" % (current_window, next_window)
-        data[current_window] = ' '.join(allwords[current_window:next_window])
+        data[current_window] = " ".join(allwords[current_window:next_window])
         data[current_window] = indicoio.sentiment(data[current_window])
         print data[current_window]
         current_window += shift
