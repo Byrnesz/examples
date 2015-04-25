@@ -35,7 +35,7 @@ def sentiment_sliding(messages, window=1000, shift=20):
     return data
 
 
-f = open('emgw.json','r')
+f = open('email.json','r')
 rawemails = json.load(f)
 print 'number of emails', len(rawemails)
 f.close()
