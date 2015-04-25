@@ -8,4 +8,4 @@
 
 [Wikipedia](https://github.com/IndicoDataSolutions/examples/tree/master/wikipedia)
 
-<a href="https://github.com/IndicoDataSolutions/examples/tree/master/sentiment"><img src="http://i.imgur.com/d5lAA45.jpg" height="300"></a>
+<a href="https://github.com/IndicoDataSolutions/examples/tree/master/wikipedia"><img src="http://i.imgur.com/d5lAA45.jpg" height="300"></a>
